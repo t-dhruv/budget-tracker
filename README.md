@@ -11,11 +11,15 @@ To set up the application locally, please refer to the [instructions here](./doc
 
 ## Self-hosting
 
+<<<<<<< HEAD
 Run Budget Tracker (MoneyMatter) on your own server: the stack pulls published multi-arch Docker images and exposes the whole app on a single port, so you front it with whatever reverse proxy you already run (Nginx Proxy Manager, Caddy, Traefik, …) – or use the optional bundled Traefik + Let's Encrypt overlay. See the [self-hosting guide](./self-hosting/README.md).
 
 ## Translations
 
 The app ships in English, Ukrainian, Spanish and Indonesian. Corrections and new languages are welcome via [Crowdin](https://crowdin.com/project/moneymatter).
+=======
+To run Budget Tracker (MoneyMatter) on your own server (Docker + Cloudflare Tunnel, single VPS, frontend-only exposure), follow the [self-hosting guide](./docs/self-hosting.md).
+>>>>>>> 1aea6dd1 (docs: update self-hosting guide and env for cloudflare tunnel)
 
 ## License
 
