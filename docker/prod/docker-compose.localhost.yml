@@ -1,0 +1,18 @@
+# Localhost override — replaces the host port mapping so you can verify the
+# stack on a laptop where port 24680 is taken, or use a different frontend
+# port for testing.
+#
+# Usage:
+#   docker compose --env-file .env.production \
+#     -f docker/prod/docker-compose.yml \
+#     -f docker/prod/docker-compose.localhost.yml \
+#     up -d --build
+#
+# Set in .env.production for this mode:
+#   FRONTEND_HOST_PORT=24680  # override if 24680 is taken
+#   BACKEND_PORT=24681        # must match docker-compose.yml (no host mapping)
+
+services:
+  frontend:
+    ports:
+      - '${FRONTEND_HOST_PORT:-24680}:24680'

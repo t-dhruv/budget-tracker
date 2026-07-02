@@ -1,0 +1,124 @@
+# Self-host compose for Budget Tracker — Cloudflare Tunnel edition.
+#
+# Usage:
+#   1. Place .env.production NEXT to this compose file's project root (the
+#      repo root is the standard spot). It contains DB password + auth
+#      secrets + frontend build values – DO NOT bake it into images.
+#   2. Install and configure cloudflared on the VPS (see docs/self-hosting.md).
+#   3. Point your Cloudflare Tunnel to http://localhost:24680.
+#   4. From the repo root:
+#      docker compose --env-file .env.production \
+#        -f docker/prod/docker-compose.yml up -d --build
+#
+# Frontend (nginx) listens on port 24680 and reverse-proxies /api/ to the
+# backend. The backend has zero external exposure — only accessible from the
+# internal Docker network. All TLS is handled by Cloudflare Tunnel; the stack
+# itself runs plain HTTP internally.
+#
+# Pin the compose project name so resources are namespaced consistently
+# regardless of which directory `docker compose` is invoked from.
+name: budget-tracker-prod
+
+x-logging: &default-logging
+  driver: 'json-file'
+  options:
+    max-size: '10m'
+    max-file: '3'
+
+services:
+  backend:
+    build:
+      context: ../../
+      dockerfile: docker/prod/backend/Dockerfile
+    restart: unless-stopped
+    networks: [selfhost]
+    expose: ['24681']
+    depends_on:
+      db: { condition: service_healthy }
+      redis: { condition: service_healthy }
+      currency-rates-api: { condition: service_healthy }
+    env_file: ../../.env.production
+    logging: *default-logging
+
+  frontend:
+    build:
+      context: ../../
+      dockerfile: docker/prod/frontend/Dockerfile
+      args:
+        VITE_APP_API_HTTP: ${VITE_APP_API_HTTP:-}
+        VITE_APP_API_VER: ${VITE_APP_API_VER:-/api/v1}
+        VITE_MCP_BASE_URL: ${VITE_MCP_BASE_URL:-}
+        VITE_POSTHOG_KEY: ${VITE_POSTHOG_KEY:-}
+        VITE_POSTHOG_HOST: ${VITE_POSTHOG_HOST:-}
+        VITE_LOGO_DEV_TOKEN: ${VITE_LOGO_DEV_TOKEN:-}
+        VITE_SENTRY_DSN: ${VITE_SENTRY_DSN:-}
+        VITE_SENTRY_RELEASE: ${VITE_SENTRY_RELEASE:-}
+        SENTRY_AUTH_TOKEN: ${SENTRY_AUTH_TOKEN:-}
+        SENTRY_ORG: ${SENTRY_ORG:-}
+        SENTRY_PROJECT: ${SENTRY_PROJECT:-}
+        CSP_EXTRA_ANALYTICS: ${CSP_EXTRA_ANALYTICS:-}
+    restart: unless-stopped
+    networks: [selfhost]
+    ports: ['24680:24680']
+    depends_on: [backend]
+    logging: *default-logging
+
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    networks: [selfhost]
+    volumes: ['db_data:/var/lib/postgresql/data']
+    ports: ['127.0.0.1:${DB_HOST_PORT:-5432}:5432']
+    environment:
+      - POSTGRES_USER=${APPLICATION_DB_USERNAME}
+      - POSTGRES_PASSWORD=${APPLICATION_DB_PASSWORD}
+      - POSTGRES_DB=${APPLICATION_DB_DATABASE}
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7
+    restart: unless-stopped
+    networks: [selfhost]
+    volumes: ['redis_data:/data']
+    ports: ['127.0.0.1:${REDIS_HOST_PORT:-6379}:6379']
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  currency-rates-api:
+    image: letehaha/currency-rates-api:latest
+    restart: unless-stopped
+    networks: [selfhost]
+    volumes: ['currency_rates_data:/app/data']
+    environment:
+      - DATABASE_URL=sqlite:/app/data/currency_rates.db?mode=rwc
+      - HOST=0.0.0.0
+      - PORT=8080
+      - DEFAULT_API_BASE=USD
+      - SEED_ON_STARTUP=true
+      - SYNC_ON_STARTUP=true
+      - 'SYNC_CRON=0 0 8,12,16,20 * * *'
+      - RUST_LOG=currency_rates=info,tower_http=info
+    healthcheck:
+      test: ['CMD', 'wget', '-q', '--spider', 'http://localhost:8080/health']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    logging: *default-logging
+
+networks:
+  selfhost:
+    name: selfhost
+    driver: bridge
+
+volumes:
+  db_data:
+  redis_data:
+  currency_rates_data:
