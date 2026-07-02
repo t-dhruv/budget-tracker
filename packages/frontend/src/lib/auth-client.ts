@@ -15,12 +15,22 @@ import { createAuthClient } from 'better-auth/vue';
  * The client uses cookies for session management (no more JWT tokens in localStorage).
  */
 
+<<<<<<< HEAD
 // Determine the base URL for auth API. API_HTTP is '' in same-origin mode
 // (regular fetches use relative URLs), but better-auth's createAuthClient
 // requires an ABSOLUTE baseURL and throws "Invalid base URL" on a relative
 // one — so fall back to the page origin, which same-origin mode targets
 // anyway.
 export const getBaseURL = () => `${API_HTTP || window.location.origin}${API_VER}/auth`;
+=======
+// Determine the base URL for auth API
+// In production, VITE_APP_API_HTTP is empty (nginx proxies /api/ to backend),
+// so fall back to window.location.origin for BetterAuth which requires absolute URL.
+const getBaseURL = () => {
+  const base = API_HTTP || window.location.origin;
+  return `${base}${API_VER}/auth`;
+};
+>>>>>>> f0a51723 (fix: auth flow)
 
 // Create auth client with passkey plugin
 // The passkey plugin adds: signIn.passkey, passkey.addPasskey, passkey.listUserPasskeys, etc.
