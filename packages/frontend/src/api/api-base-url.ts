@@ -7,9 +7,13 @@
  * different ports, and a hardcoded port would send every stack's frontend to one backend.
  */
 
+<<<<<<< HEAD
 import { config } from '@/common/config';
 
 const DEFAULT_DEV_BACKEND_PORT = '8081';
+=======
+const DEFAULT_DEV_BACKEND_PORT = '24681';
+>>>>>>> 3aef9cab (fix: port fix)
 
 export const resolveApiHttpBase = ({
   isDev,
@@ -37,7 +41,11 @@ export const resolveApiHttpBase = ({
 
 export const API_HTTP = resolveApiHttpBase({
   isDev: import.meta.env.DEV,
+<<<<<<< HEAD
   configuredUrl: config.apiHttp,
+=======
+  configuredUrl: import.meta.env.VITE_APP_API_HTTP || `http://127.0.0.1:${DEFAULT_DEV_BACKEND_PORT}`,
+>>>>>>> 3aef9cab (fix: port fix)
   pageProtocol: window.location.protocol,
   pageHostname: window.location.hostname,
 });
