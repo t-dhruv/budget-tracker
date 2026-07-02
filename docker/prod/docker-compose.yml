@@ -39,7 +39,7 @@ services:
       dockerfile: docker/prod/backend/Dockerfile
     restart: unless-stopped
     networks: [selfhost]
-    expose: ['24681']
+    expose: ['24681:24681']
     depends_on:
       db: { condition: service_healthy }
       redis: { condition: service_healthy }
