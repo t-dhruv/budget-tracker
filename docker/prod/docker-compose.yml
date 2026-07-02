@@ -26,6 +26,13 @@ x-logging: &default-logging
     max-file: '3'
 
 services:
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared_tunnel
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run --token ${TUNNEL_TOKEN}
+    env_file: ../../.env.production
+
   backend:
     build:
       context: ../../
