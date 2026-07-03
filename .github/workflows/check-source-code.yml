@@ -102,7 +102,7 @@ jobs:
         uses: SpicyPizza/create-envfile@v2
         with:
           envkey_APPLICATION_HOST: 127.0.0.1
-          envkey_APPLICATION_PORT: 8081
+          envkey_APPLICATION_PORT: 24681
           envkey_APPLICATION_JWT_SECRET: test-jwt
           # docker/test/backend/docker-compose.yml DB's service name
           envkey_APPLICATION_DB_HOST: test-db
@@ -153,7 +153,7 @@ jobs:
         uses: SpicyPizza/create-envfile@v2
         with:
           envkey_APPLICATION_HOST: 127.0.0.1
-          envkey_APPLICATION_PORT: 8081
+          envkey_APPLICATION_PORT: 24681
           envkey_APPLICATION_JWT_SECRET: test-jwt
           # docker/test/backend/docker-compose.yml DB's service name
           envkey_APPLICATION_DB_HOST: test-db

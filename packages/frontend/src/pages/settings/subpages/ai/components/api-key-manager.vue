@@ -252,6 +252,13 @@ const PROVIDER_CONFIG = computed<Record<AI_PROVIDER, ProviderConfigItem>>(() => 
     apiKeyUrl: 'https://console.groq.com/keys',
     apiKeyUrlLabel: 'console.groq.com',
   },
+  [AI_PROVIDER.nvidia]: {
+    label: t('settings.ai.apiKeyManager.providers.nvidia.label'),
+    placeholder: t('settings.ai.apiKeyManager.providers.nvidia.placeholder'),
+    description: t('settings.ai.apiKeyManager.providers.nvidia.description'),
+    apiKeyUrl: 'https://build.nvidia.com/',
+    apiKeyUrlLabel: 'build.nvidia.com',
+  },
 }));
 
 const { addErrorNotification, addSuccessNotification } = useNotificationCenter();

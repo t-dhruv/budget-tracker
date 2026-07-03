@@ -322,6 +322,7 @@ export enum AI_PROVIDER {
   openai = 'openai',
   google = 'google',
   groq = 'groq',
+  nvidia = 'nvidia',
 }
 
 /**

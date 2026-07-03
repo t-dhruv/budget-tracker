@@ -42,14 +42,22 @@ export const resolveApiHttpBase = ({
 export const API_HTTP = resolveApiHttpBase({
   isDev: import.meta.env.DEV,
 <<<<<<< HEAD
+<<<<<<< HEAD
   configuredUrl: config.apiHttp,
 =======
   configuredUrl: import.meta.env.VITE_APP_API_HTTP || `http://127.0.0.1:${DEFAULT_DEV_BACKEND_PORT}`,
 >>>>>>> 3aef9cab (fix: port fix)
+=======
+  configuredUrl: import.meta.env.VITE_APP_API_HTTP,
+>>>>>>> 88830184 (fix: backend port fix)
   pageProtocol: window.location.protocol,
   pageHostname: window.location.hostname,
 });
 
 // Vitest runs without .env.development, so the env var is undefined there; better-auth
 // validates `${API_HTTP}${API_VER}/auth` at module load and rejects the malformed URL.
+<<<<<<< HEAD
 export const API_VER = config.apiVer;
+=======
+export const API_VER = import.meta.env.VITE_APP_API_VER ?? '/api/v1';
+>>>>>>> 88830184 (fix: backend port fix)

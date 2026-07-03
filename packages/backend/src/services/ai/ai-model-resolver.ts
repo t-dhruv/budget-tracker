@@ -29,6 +29,8 @@ function getServerApiKey({ provider }: { provider: AI_PROVIDER }): string | null
       return process.env.ANTHROPIC_API_KEY || null;
     case AI_PROVIDER.groq:
       return process.env.GROQ_API_KEY || null;
+    case AI_PROVIDER.nvidia:
+      return process.env.NVIDIA_API_KEY || null;
     default:
       return null;
   }

@@ -26,4 +26,10 @@ export enum AI_MODEL_ID {
   'groq/llama-3.3-70b-versatile' = 'groq/llama-3.3-70b-versatile',
   'groq/llama-3.1-8b-instant' = 'groq/llama-3.1-8b-instant',
   'groq/mixtral-8x7b-32768' = 'groq/mixtral-8x7b-32768',
+
+  // NVIDIA (via integrate.api.nvidia.com OpenAI-compatible endpoint)
+  'nvidia/meta/llama-3.2-3b-instruct' = 'nvidia/meta/llama-3.2-3b-instruct',
+  'nvidia/meta/llama-3.1-405b-instruct' = 'nvidia/meta/llama-3.1-405b-instruct',
+  'nvidia/meta/llama-3.1-70b-instruct' = 'nvidia/meta/llama-3.1-70b-instruct',
+  'nvidia/meta/llama-3.1-8b-instruct' = 'nvidia/meta/llama-3.1-8b-instruct',
 }

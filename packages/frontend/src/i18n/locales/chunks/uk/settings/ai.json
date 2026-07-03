@@ -59,6 +59,11 @@
             "label": "Groq (Llama, Mixtral)",
             "placeholder": "gsk_...",
             "description": "Отримайте API ключ на"
+          },
+          "nvidia": {
+            "label": "NVIDIA",
+            "placeholder": "nvapi-...",
+            "description": "Отримайте API ключ у каталозі API NVIDIA."
           }
         },
         "notifications": {
@@ -129,7 +134,8 @@
           "openai": "OpenAI",
           "anthropic": "Anthropic",
           "google": "Google",
-          "groq": "Groq"
+          "groq": "Groq",
+          "nvidia": "NVIDIA (api.nvidia.com)"
         },
         "costLabels": {
           "free": "Безкоштовно",

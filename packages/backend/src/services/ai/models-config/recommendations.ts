@@ -14,6 +14,8 @@ export const FEATURE_RECOMMENDATIONS: Record<AI_FEATURE, AI_MODEL_ID[]> = {
     AI_MODEL_ID['openai/gpt-4o-mini'], // Good balance of quality and cost
     AI_MODEL_ID['anthropic/claude-haiku-4-5'], // Fast Claude option
     AI_MODEL_ID['groq/mixtral-8x7b-32768'], // Free/cheap option with good speed
+    AI_MODEL_ID['nvidia/meta/llama-3.1-8b-instruct'], // Cheap NVIDIA option
+    AI_MODEL_ID['nvidia/meta/llama-3.1-405b-instruct'], // High-quality NVIDIA option
   ],
   [AI_FEATURE.statementParsing]: [
     // Gemini models - fast and cost-effective for text extraction
@@ -26,6 +28,9 @@ export const FEATURE_RECOMMENDATIONS: Record<AI_FEATURE, AI_MODEL_ID[]> = {
     // GPT-4o has vision capabilities
     AI_MODEL_ID['openai/gpt-4o-mini'], // Cheaper option with decent vision
     AI_MODEL_ID['openai/gpt-4o'], // Good vision capabilities for image-based extraction
+    // NVIDIA models
+    AI_MODEL_ID['nvidia/meta/llama-3.1-405b-instruct'], // Strong for complex parsing
+    AI_MODEL_ID['nvidia/meta/llama-3.1-70b-instruct'], // Good balance for parsing
   ],
   [AI_FEATURE.investmentTransactionsParsing]: [
     // Same shape as statement parsing — token-efficient text extraction
@@ -36,6 +41,8 @@ export const FEATURE_RECOMMENDATIONS: Record<AI_FEATURE, AI_MODEL_ID[]> = {
     AI_MODEL_ID['anthropic/claude-3-7-sonnet-latest'],
     AI_MODEL_ID['openai/gpt-4o-mini'],
     AI_MODEL_ID['openai/gpt-4o'],
+    AI_MODEL_ID['nvidia/meta/llama-3.1-405b-instruct'],
+    AI_MODEL_ID['nvidia/meta/llama-3.1-70b-instruct'],
   ],
 };
 

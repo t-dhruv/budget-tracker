@@ -50,6 +50,10 @@ function createProviderModel({
       const groq = createGroq({ apiKey });
       return groq(modelName);
     }
+    case AI_PROVIDER.nvidia: {
+      const nvidia = createOpenAI({ apiKey, baseURL: 'https://integrate.api.nvidia.com/v1' });
+      return nvidia(modelName);
+    }
     default: {
       const _exhaustiveCheck: never = provider;
       throw new Error(`Unsupported AI provider: ${_exhaustiveCheck}`);

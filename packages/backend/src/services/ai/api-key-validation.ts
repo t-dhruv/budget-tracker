@@ -12,6 +12,7 @@ const VALIDATION_MODELS: Record<AI_PROVIDER, AI_MODEL_ID> = {
   [AI_PROVIDER.anthropic]: AI_MODEL_ID['anthropic/claude-haiku-4-5'],
   [AI_PROVIDER.google]: AI_MODEL_ID['google/gemini-2.5-flash-lite'],
   [AI_PROVIDER.groq]: AI_MODEL_ID['groq/llama-3.1-8b-instant'],
+  [AI_PROVIDER.nvidia]: AI_MODEL_ID['nvidia/meta/llama-3.2-3b-instruct'],
 };
 
 interface APIKeyValidationResult {

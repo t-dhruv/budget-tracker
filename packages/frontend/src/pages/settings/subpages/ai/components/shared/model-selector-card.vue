@@ -227,6 +227,7 @@ const PROVIDER_LABELS = computed<Record<AI_PROVIDER, string>>(() => ({
   [AI_PROVIDER.anthropic]: t('settings.ai.modelSelector.groupLabels.anthropic'),
   [AI_PROVIDER.google]: t('settings.ai.modelSelector.groupLabels.google'),
   [AI_PROVIDER.groq]: t('settings.ai.modelSelector.groupLabels.groq'),
+  [AI_PROVIDER.nvidia]: t('settings.ai.modelSelector.groupLabels.nvidia'),
 }));
 
 const COST_LABELS = computed<Record<AIModelCostTier, string>>(() => ({

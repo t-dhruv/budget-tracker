@@ -55,6 +55,7 @@ export const useFeatureModels = (feature: MaybeRefOrGetter<AI_FEATURE>) => {
       [AI_PROVIDER.anthropic]: [],
       [AI_PROVIDER.google]: [],
       [AI_PROVIDER.groq]: [],
+      [AI_PROVIDER.nvidia]: [],
     };
 
     for (const model of availableModels.value) {
