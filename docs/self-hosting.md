@@ -408,8 +408,8 @@ docker compose --env-file .env.production \
   --profile admin up -d pgadmin
 ```
 
-pgAdmin is bound to `127.0.0.1:24682` — access it through an SSH tunnel
-(`ssh -L 24682:localhost:24682 user@vps`). Log in with `PGADMIN_DEFAULT_EMAIL`
+pgAdmin is accessible at `http://<vps-ip>:24682` from any device on the
+local network. Log in with `PGADMIN_DEFAULT_EMAIL`
 and `PGADMIN_DEFAULT_PASSWORD` from your `.env.production`. Register the
 database server:
 
@@ -430,8 +430,8 @@ docker compose --env-file .env.production \
   --profile admin up -d redis-commander
 ```
 
-Redis Commander is bound to `127.0.0.1:24683` — access it through an SSH tunnel
-(`ssh -L 24683:localhost:24683 user@vps`). No login required — it connects to
+Redis Commander is accessible at `http://<vps-ip>:24683` from any device on
+the local network. No login required — it connects to
 Redis over the internal Docker network.
 
 ## 10. Localhost / no-DNS testing

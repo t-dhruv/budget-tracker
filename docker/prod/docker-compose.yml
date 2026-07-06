@@ -122,7 +122,7 @@ services:
     image: rediscommander/redis-commander:latest
     restart: unless-stopped
     networks: [selfhost]
-    ports: ['127.0.0.1:${REDIS_COMMANDER_HOST_PORT}:24683']
+    ports: ['${REDIS_COMMANDER_HOST_PORT}:24683']
     environment:
       - REDIS_HOSTS=local:redis:6379
       - PORT=24683
@@ -156,7 +156,7 @@ services:
     image: dpage/pgadmin4:8.11
     restart: unless-stopped
     networks: [selfhost]
-    ports: ['127.0.0.1:${PGADMIN_HOST_PORT}:${PGADMIN_LISTEN_PORT}']
+    ports: ['${PGADMIN_HOST_PORT}:${PGADMIN_LISTEN_PORT}']
     environment:
       - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}

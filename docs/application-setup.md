@@ -83,10 +83,11 @@ npm run docker:dev
 
 This will:
 
-- Build and start all Docker containers (backend, frontend, PostgreSQL, Redis, currency-rates-api, pgAdmin)
-- Backend will be available at `https://localhost:8081`
+- Build and start all Docker containers (backend, frontend, PostgreSQL, Redis, currency-rates-api, pgAdmin, redis-commander)
+- Backend will be available at `https://localhost:24681`
 - Frontend will be available at `https://localhost:8100`
-- pgAdmin will be available at `http://localhost:8001`
+- pgAdmin will be available at `http://localhost:24682`
+- Redis Commander will be available at `http://localhost:24683`
 
 ### 6. Run Database Migrations
 
@@ -99,10 +100,11 @@ npm run docker:dev:migrate
 ### 7. Access the Application
 
 - **Frontend**: https://localhost:8100
-- **Backend API**: https://localhost:8081
-- **pgAdmin**: http://localhost:8001
+- **Backend API**: https://localhost:24681
+- **pgAdmin**: http://localhost:24682
   - Email: `PGADMIN_DEFAULT_EMAIL` (env variable)
   - Password: `PGADMIN_DEFAULT_PASSWORD` (env variable)
+- **Redis Commander**: http://localhost:24683
 
 **Note**: Your browser will show a security warning due to self-signed certificates. This is expected in development - accept the certificate to proceed.
 
@@ -128,7 +130,7 @@ Key environment variables in `.env.development`:
 **Backend Configuration:**
 
 - `APPLICATION_HOST`: Backend host (default: 127.0.0.1)
-- `APPLICATION_PORT`: Backend port (default: 8081)
+- `APPLICATION_PORT`: Backend port (default: 24681)
 - `APPLICATION_JWT_SECRET`: JWT secret for authentication
 
 **Database Configuration:**
@@ -159,7 +161,7 @@ Key environment variables in `.env.development`:
 
 - `HOST`: Frontend host domain (default: `localhost`)
 - `PORT`: Frontend port (default: `8100`)
-- `VITE_APP_API_HTTP`: Backend API URL (default: `http://127.0.0.1:8081`)
+- `VITE_APP_API_HTTP`: Backend API URL (default: `http://127.0.0.1:24681`)
 - `VITE_APP_API_VER`: API version prefix (default: `/api/v1`)
 
 **Security:**
@@ -313,7 +315,7 @@ npm run docker:dev
 
 To connect to the database from pgAdmin:
 
-1. Open http://localhost:8001
+1. Open http://localhost:24682
 2. Login with credentials from `.env.development`
 3. Add new server:
    - **Name**: `foo_bar`
