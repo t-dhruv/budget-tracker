@@ -2,7 +2,7 @@ FROM alpine:3.20
 
 RUN apk add --no-cache postgresql-client dcron bash
 
-COPY backup.sh /usr/local/bin/backup.sh
+COPY docker/prod/backup/backup.sh /usr/local/bin/backup.sh
 RUN chmod +x /usr/local/bin/backup.sh
 
 # Create backup directory
