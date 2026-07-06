@@ -336,16 +336,61 @@ docker compose -f docker/prod/docker-compose.yml logs -f backend
 
 The two stateful volumes are `db_data` (Postgres) and `redis_data` (Redis).
 Redis is queue-only – data is regenerated on the fly, so back up Postgres
-only.
+only. The production stack includes an optional automated backup sidecar.
+
+### 9.1 Automated backup (recommended)
+
+The `db-backup` sidecar runs `pg_dump` on a cron schedule and saves
+compressed dumps to a Docker volume (`db_backups`). It starts automatically
+with the stack.
+
+**Configuration** (set in `.env.production`):
+
+| Variable                | Default      | Description                              |
+|-------------------------|--------------|------------------------------------------|
+| `BACKUP_SCHEDULE`       | `0 4 * * *`  | Cron expression (daily at 4 AM)          |
+| `BACKUP_RETENTION_DAYS` | `30`         | Remove backups older than N days          |
+
+**Manual trigger**:
 
 ```bash
-# Daily dump
+docker compose -f docker/prod/docker-compose.yml exec db-backup backup.sh
+```
+
+**List backups**:
+
+```bash
+docker compose -f docker/prod/docker-compose.yml exec db-backup ls -lh /backups
+```
+
+**Copy a backup off the host**:
+
+```bash
+docker cp budget-tracker-prod-db-backup-1:/backups/db_backup_20260706_040000.sql.gz .
+```
+
+**Restore from a local backup** (using existing script):
+
+```bash
+./scripts/restore-backup.sh /path/to/db_backup_20260706_040000.sql.gz
+```
+
+**Restore from R2** (maintainer CI backups):
+
+```bash
+./scripts/restore-backup.sh
+```
+
+### 9.2 Manual one-shot backup
+
+```bash
+# Requires credentials to be set in .env.production
 docker compose -f docker/prod/docker-compose.yml exec -T db \
   pg_dump -U "$APPLICATION_DB_USERNAME" "$APPLICATION_DB_DATABASE" \
   | gzip > "backup-$(date +%F).sql.gz"
 ```
 
-Restore:
+### 9.3 Restore
 
 ```bash
 gunzip -c backup-2026-05-01.sql.gz | \
@@ -417,6 +462,7 @@ This mode skips TLS – do not run it on a public VPS.
 | `OFFLINE_MODE`        | Disable background exchange-rate jobs          |
 | `YAHOO_FINANCE_ENABLED` | Toggle Yahoo Finance investments source      |
 | `DB_QUERY_LOGGING`    | Log every SQL query                            |
+| `BACKUP_SCHEDULE`, `BACKUP_RETENTION_DAYS` | Automated DB backup schedule & retention |
 
 ---
 
