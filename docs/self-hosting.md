@@ -398,6 +398,42 @@ gunzip -c backup-2026-05-01.sql.gz | \
   psql -U "$APPLICATION_DB_USERNAME" "$APPLICATION_DB_DATABASE"
 ```
 
+### 9.4 pgAdmin (optional admin UI)
+
+Start pgAdmin alongside the stack to browse the database via a web GUI:
+
+```bash
+docker compose --env-file .env.production \
+  -f docker/prod/docker-compose.yml \
+  --profile admin up -d pgadmin
+```
+
+pgAdmin is bound to `127.0.0.1:24682` — access it through an SSH tunnel
+(`ssh -L 24682:localhost:24682 user@vps`). Log in with `PGADMIN_DEFAULT_EMAIL`
+and `PGADMIN_DEFAULT_PASSWORD` from your `.env.production`. Register the
+database server:
+
+| Field       | Value                      |
+|-------------|----------------------------|
+| Host        | `db`                       |
+| Port        | 5432                       |
+| Username    | `$APPLICATION_DB_USERNAME` |
+| Password    | `$APPLICATION_DB_PASSWORD` |
+
+### 9.5 Redis Commander (optional admin UI)
+
+Start Redis Commander alongside the stack to browse Redis via a web UI:
+
+```bash
+docker compose --env-file .env.production \
+  -f docker/prod/docker-compose.yml \
+  --profile admin up -d redis-commander
+```
+
+Redis Commander is bound to `127.0.0.1:24683` — access it through an SSH tunnel
+(`ssh -L 24683:localhost:24683 user@vps`). No login required — it connects to
+Redis over the internal Docker network.
+
 ## 10. Localhost / no-DNS testing
 
 To validate the prod stack on a laptop without a Cloudflare Tunnel or
@@ -453,6 +489,8 @@ This mode skips TLS – do not run it on a public VPS.
 | `SENTRY_DSN`, `POSTHOG_KEY` (+ `VITE_*` twins)            | Error tracking / analytics         |
 | `ADMIN_USERS`                                             | Comma-separated admin usernames    |
 | `AUTH_RP_ID`, `AUTH_RP_NAME`                              | WebAuthn / passkey support         |
+| `PGADMIN_DEFAULT_EMAIL`, `PGADMIN_DEFAULT_PASSWORD`       | pgAdmin web UI (opt-in via `--profile admin`) |
+| `REDIS_COMMANDER_HOST_PORT`                                | Redis Commander web UI port (opt-in via `--profile admin`) |
 
 ### Advanced
 

@@ -55,6 +55,16 @@ services:
     volumes: ['redis_data:/data']
     ports: ['${MAP_REDIS_PORT_TO_OS_PORT:-6379}:6379']
 
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    restart: unless-stopped
+    environment:
+      - REDIS_HOSTS=local:${APPLICATION_REDIS_HOST:-redis}:6379
+      - PORT=${REDIS_COMMANDER_PORT}
+    ports: ['${MAP_REDIS_COMMANDER_PORT_TO_OS_PORT}:${REDIS_COMMANDER_PORT}']
+    depends_on: ['redis']
+    attach: false
+
   # Currency Rates API: Custom exchange rate service (primary provider)
   # Uses ECB + NBU data sources for comprehensive currency coverage
   # Supports: 38 currencies with historical data from 1999-01-04
@@ -85,7 +95,7 @@ services:
       - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
       - PGADMIN_LISTEN_PORT=${PGADMIN_LISTEN_PORT}
-    ports: ['${MAP_PGADMIN_PORT_TO_OS_PORT:-8001}:${PGADMIN_LISTEN_PORT:-8001}']
+    ports: ['${MAP_PGADMIN_PORT_TO_OS_PORT:-24682}:${PGADMIN_LISTEN_PORT:-24682}']
     depends_on: ['db']
     attach: false
 

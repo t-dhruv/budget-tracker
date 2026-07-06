@@ -117,6 +117,18 @@ services:
       timeout: 3s
       retries: 5
 
+  redis-commander:
+    profiles: ['admin']
+    image: rediscommander/redis-commander:latest
+    restart: unless-stopped
+    networks: [selfhost]
+    ports: ['127.0.0.1:${REDIS_COMMANDER_HOST_PORT}:24683']
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+      - PORT=24683
+    depends_on: [redis]
+    logging: *default-logging
+
   currency-rates-api:
     image: letehaha/currency-rates-api:latest
     restart: unless-stopped
@@ -137,6 +149,19 @@ services:
       timeout: 10s
       retries: 3
       start_period: 30s
+    logging: *default-logging
+
+  pgadmin:
+    profiles: ['admin']
+    image: dpage/pgadmin4:8.11
+    restart: unless-stopped
+    networks: [selfhost]
+    ports: ['127.0.0.1:${PGADMIN_HOST_PORT}:${PGADMIN_LISTEN_PORT}']
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+      - PGADMIN_LISTEN_PORT=${PGADMIN_LISTEN_PORT}
+    depends_on: [db]
     logging: *default-logging
 
 networks:

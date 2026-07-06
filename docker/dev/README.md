@@ -8,8 +8,9 @@ This directory contains the Docker configuration for local development with hot 
 - **frontend**: Vue.js frontend (port defined in .env)
 - **db**: PostgreSQL 16 database
 - **redis**: Redis 7 cache
+- **redis-commander**: Redis web UI (port 24683)
 - **currency-rates-api**: Self-hosted exchange rates service (ECB + NBU)
-- **pgadmin**: PostgreSQL admin interface (port 8001)
+- **pgadmin**: PostgreSQL admin interface (port 24682)
 
 ## Quick Start (Online Mode)
 
@@ -74,7 +75,7 @@ Required variables in `.env.development`:
 - `APPLICATION_DB_PORT`: Database port (default: 5432)
 - `PGADMIN_DEFAULT_EMAIL`: PgAdmin login email
 - `PGADMIN_DEFAULT_PASSWORD`: PgAdmin login password
-- `PGADMIN_LISTEN_PORT`: PgAdmin port (default: 8001)
+- `PGADMIN_LISTEN_PORT`: PgAdmin port (default: 24682)
 
 ## Common Commands
 
