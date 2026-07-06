@@ -86,6 +86,25 @@ services:
       timeout: 5s
       retries: 5
 
+  db-backup:
+    build:
+      context: ../../
+      dockerfile: docker/prod/backup/Dockerfile
+    restart: unless-stopped
+    networks: [selfhost]
+    volumes:
+      - db_backups:/backups
+    environment:
+      - PG_HOST=db
+      - PG_PORT=5432
+      - PG_USER=${APPLICATION_DB_USERNAME}
+      - PG_DB=${APPLICATION_DB_DATABASE}
+      - BACKUP_SCHEDULE=${BACKUP_SCHEDULE:-0 4 * * *}
+      - BACKUP_RETENTION_DAYS=${BACKUP_RETENTION_DAYS:-30}
+    depends_on:
+      db: { condition: service_healthy }
+    logging: *default-logging
+
   redis:
     image: redis:7
     restart: unless-stopped
@@ -127,5 +146,6 @@ networks:
 
 volumes:
   db_data:
+  db_backups:
   redis_data:
   currency_rates_data:
