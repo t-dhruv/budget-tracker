@@ -177,6 +177,19 @@
         </p>
       </div>
 
+      <!-- AI categorization toggle -->
+      <div class="flex items-start gap-3 pt-2">
+        <Checkbox id="categorize-with-ai" v-model="categorizeWithAi" />
+        <label for="categorize-with-ai" class="text-sm leading-snug cursor-pointer">
+          <span class="font-medium">
+            {{ $t('pages.importExport.csvImport.review.categorizeWithAi') }}
+          </span>
+          <p class="text-muted-foreground text-xs">
+            {{ $t('pages.importExport.csvImport.review.categorizeWithAiHint') }}
+          </p>
+        </label>
+      </div>
+
       <!-- Import error callout (execute-import enqueue failure) -->
       <Callout v-if="store.executeError" variant="destructive" role="alert">
         <p>{{ store.executeError }}</p>
@@ -211,6 +224,7 @@
 <script setup lang="ts">
 import UiButton from '@/components/lib/ui/button/Button.vue';
 import { Callout } from '@/components/lib/ui/callout';
+import { Checkbox } from '@/components/lib/ui/checkbox';
 import { MappingTable, type MappingTableColumn } from '@/components/lib/ui/mapping-table';
 import { StatCard } from '@/components/lib/ui/stat-card';
 import { StatusIndicator } from '@/components/lib/ui/status-indicator';
@@ -289,17 +303,21 @@ const compactRowSummary = (rawData: InvalidRow['rawData']): string => {
   return parts.join(' · ') || '—';
 };
 
+// --- State ---
+
+const categorizeWithAi = ref(false);
+
 // --- Actions ---
 
 // executeImport enqueues the async job and resolves once it's accepted (or sets
 // store.executeError and returns on enqueue failure), so no try/catch is needed:
 // any error surfaces via the executeError callout below.
 const handleExecuteImport = async () => {
-  await store.executeImport();
+  await store.executeImport({ categorizeWithAi: categorizeWithAi.value });
 };
 
 const handleSkipAndImport = async () => {
   const skipUnpriceableIndices = store.unpriceableRows.map((r) => r.rowIndex);
-  await store.executeImport({ skipUnpriceableIndices });
+  await store.executeImport({ skipUnpriceableIndices, categorizeWithAi: categorizeWithAi.value });
 };
 </script>

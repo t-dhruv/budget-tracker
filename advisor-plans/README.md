@@ -13,6 +13,7 @@ All three plans were cold-reviewed by subagents and revised on 2026-07-08. See i
 | 001 | Migration framework for backfilling new default categories to existing users | P1 | M | — | DONE |
 | 002 | Expanded default taxonomy — new main categories, missing subcategories, i18n | P1 | L | 001 | DONE |
 | 003 | Fix pets mis-parenting and naming overlaps | P2 | S | 002 | DONE |
+| 004 | Add AI auto-categorization toggle to CSV import | P1 | S | — | TODO |
 
 ## Dependency notes
 
@@ -57,6 +58,8 @@ Issues identified by cold-review subagents and fixed across all three plans:
 - Prerequisite verification: added Step 0 checking Plan 002 was applied
 - Commands table: added (was entirely missing)
 - Icon verification: confirmed `heart-20-filled` available (used by `life` main), added note
+
+- **Plan 004 is standalone**: no dependency on the taxonomy plans. The CSV import's AI auto-categorization toggle works independently — it just calls the existing `queueCategorizationJob`.
 
 ## Findings considered and rejected
 

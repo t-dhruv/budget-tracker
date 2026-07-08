@@ -70,7 +70,8 @@
           "statusCompleted": "Завершено",
           "statusFailed": "Помилка",
           "failed": "Помилка імпорту.",
-          "partialImportNote": "Деякі рядки могли бути вже імпортовані до цієї помилки. Повторний імпорт може створити дублікати."
+          "partialImportNote": "Деякі рядки могли бути вже імпортовані до цієї помилки. Повторний імпорт може створити дублікати.",
+          "aiCategorizationQueued": "AI categorization has been queued for the imported transactions"
         },
         "review": {
           "stepTitle": "Перегляд імпорту",
@@ -105,7 +106,9 @@
           "noInvalidRows": "Немає недійсних рядків",
           "noDuplicates": "Немає дублікатів",
           "expand": "Показати повні дані",
-          "collapse": "Сховати повні дані"
+          "collapse": "Сховати повні дані",
+          "categorizeWithAi": "Auto-categorize with AI",
+          "categorizeWithAiHint": "Transactions without a category will be analyzed and assigned one by AI"
         },
         "results": {
           "completeTitle": "Імпорт завершено!",

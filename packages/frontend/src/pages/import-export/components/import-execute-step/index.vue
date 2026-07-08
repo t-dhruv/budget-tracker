@@ -34,6 +34,10 @@
       <Callout v-if="executeError" variant="destructive" role="alert">
         <p>{{ executeError }}</p>
       </Callout>
+
+      <Callout v-if="categorizeWithAi && progress?.status === 'completed'" variant="info" class="mt-4">
+        <p>{{ $t('pages.importExport.csvImport.execute.aiCategorizationQueued') }}</p>
+      </Callout>
     </div>
   </div>
 </template>
@@ -58,7 +62,7 @@ const STATUS_LABEL_KEYS: Record<CsvImportProgress['status'], string> = {
 
 const { t } = useI18n();
 const store = useImportExportStore();
-const { progress, executeError } = storeToRefs(store);
+const { progress, executeError, categorizeWithAi } = storeToRefs(store);
 
 const progressPercent = computed(() => {
   if (!progress.value) return 0;

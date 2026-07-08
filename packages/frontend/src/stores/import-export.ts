@@ -219,6 +219,9 @@ export const useImportExportStore = defineStore('importExport', () => {
   /** Terminal watchdog error (lost contact / expired job) for the results step. */
   const executeError = jobProgress.executeError;
 
+  // Whether the user opted in to AI auto-categorization for this import.
+  const categorizeWithAi = ref(false);
+
   // Covers the gap between the execute POST being sent and the watchdog being
   // armed (progress is still null at that point), so the review-step button can
   // show a busy state immediately on click.
@@ -591,7 +594,9 @@ export const useImportExportStore = defineStore('importExport', () => {
    * where the execute step renders live progress and the done step renders the
    * terminal summary.
    */
-  const executeImport = async ({ skipUnpriceableIndices }: { skipUnpriceableIndices?: number[] } = {}) => {
+  const executeImport = async (
+    { skipUnpriceableIndices, categorizeWithAi: requestCategorizeWithAi }: { skipUnpriceableIndices?: number[]; categorizeWithAi?: boolean } = {},
+  ) => {
     jobProgress.setExecuteError(null);
 
     // This path runs only after isMapStepValid is true, so the mapping is
@@ -613,6 +618,7 @@ export const useImportExportStore = defineStore('importExport', () => {
     // treats an omitted tagMapping as "no tags" (see execute-import service).
     const tagMappingPayload = columnMapping.value.tags ? tagMapping.value : undefined;
 
+    categorizeWithAi.value = requestCategorizeWithAi ?? false;
     isEnqueuing.value = true;
     let response: Awaited<ReturnType<typeof executeImportApi>>;
     try {
@@ -630,6 +636,7 @@ export const useImportExportStore = defineStore('importExport', () => {
         // re-parses server-side and the user's skip indices are only valid if the
         // parse anchors dates to the same instants.
         timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        categorizeWithAi: requestCategorizeWithAi,
       });
     } catch (error) {
       // The call never started the job — keep the user on `review` (not marked
@@ -789,6 +796,7 @@ export const useImportExportStore = defineStore('importExport', () => {
     unpriceableRows.value = [];
     isDetectingDuplicates.value = false;
     detectError.value = null;
+    categorizeWithAi.value = false;
     isEnqueuing.value = false;
     resetRecalculateBalanceOverride();
     jobProgress.stop();
@@ -823,6 +831,7 @@ export const useImportExportStore = defineStore('importExport', () => {
     duplicates,
     unmarkedDuplicateIndices,
     unpriceableRows,
+    categorizeWithAi,
     isDetectingDuplicates,
     detectError,
     progress,

@@ -9,6 +9,7 @@ import {
   SSE_EVENT_TYPES,
   type TagMappingConfig,
 } from '@bt/shared/types';
+import { logger } from '@js/utils/logger';
 import { SentryTraceData } from '@js/utils/sentry';
 import { createImportJobQueue } from '@services/import-export/core/queue/create-import-job-queue';
 import { randomUUID } from 'node:crypto';
@@ -31,9 +32,14 @@ interface CsvImportJobData extends SentryTraceData {
   /** IANA timezone forwarded to `parseValidRows` so the worker anchors dates to
    *  the same instants the interactive preview computed. */
   timezone?: string;
+<<<<<<< HEAD
   /** When true, rows dated on/after a linked account's pre-import boundary move
    *  its current balance; when false/absent the pre-import balance is preserved. */
   recalculateBalance?: boolean;
+=======
+  /** When true, the worker queues AI categorization after the import. */
+  categorizeWithAi?: boolean;
+>>>>>>> bd077a99 (feat(csv-import): add AI auto-categorization toggle)
 }
 
 const {
@@ -59,7 +65,11 @@ const {
       defaultAccountId,
       defaultCategoryId,
       timezone,
+<<<<<<< HEAD
       recalculateBalance,
+=======
+      categorizeWithAi,
+>>>>>>> bd077a99 (feat(csv-import): add AI auto-categorization toggle)
     } = job.data;
 
     // Re-parse server-side rather than shipping `validRows` through Redis.
@@ -82,7 +92,7 @@ const {
         ? columnMapping.category.categoryId
         : defaultCategoryId;
 
-    return executeImport({
+    const result = await executeImport({
       userId,
       validRows,
       accountMapping,
@@ -95,6 +105,24 @@ const {
       recalculateBalance,
       onProgress,
     });
+
+    // Queue AI categorization when the user opted in and transactions were created
+    if (categorizeWithAi && result.newTransactionIds.length > 0) {
+      try {
+        const { queueCategorizationJob } = await import('@services/ai-categorization');
+        await queueCategorizationJob({
+          userId,
+          transactionIds: result.newTransactionIds,
+        });
+      } catch (err) {
+        logger.error({
+          message: '[CSV Import] Failed to queue AI categorization after import',
+          error: err as Error,
+        });
+      }
+    }
+
+    return result;
   },
 });
 
@@ -114,7 +142,11 @@ export async function queueCsvImport({
   defaultAccountId,
   defaultCategoryId,
   timezone,
+<<<<<<< HEAD
   recalculateBalance,
+=======
+  categorizeWithAi,
+>>>>>>> bd077a99 (feat(csv-import): add AI auto-categorization toggle)
 }: {
   userId: number;
   fileContent: string;
@@ -128,7 +160,11 @@ export async function queueCsvImport({
   defaultAccountId?: string;
   defaultCategoryId?: string;
   timezone?: string;
+<<<<<<< HEAD
   recalculateBalance?: boolean;
+=======
+  categorizeWithAi?: boolean;
+>>>>>>> bd077a99 (feat(csv-import): add AI auto-categorization toggle)
 }): Promise<string> {
   // Random suffix (not a timestamp): two imports the same user fires within the
   // same millisecond would otherwise collide on one id, and BullMQ silently drops
@@ -147,7 +183,11 @@ export async function queueCsvImport({
     defaultAccountId,
     defaultCategoryId,
     timezone,
+<<<<<<< HEAD
     recalculateBalance,
+=======
+    categorizeWithAi,
+>>>>>>> bd077a99 (feat(csv-import): add AI auto-categorization toggle)
   };
 
   await enqueue({ userId, jobId, data });

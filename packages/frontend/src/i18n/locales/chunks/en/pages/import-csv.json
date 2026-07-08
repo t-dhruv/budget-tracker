@@ -70,7 +70,8 @@
           "statusCompleted": "Complete",
           "statusFailed": "Failed",
           "failed": "Import failed.",
-          "partialImportNote": "Some rows may have already been imported before this failure. Re-importing could create duplicates."
+          "partialImportNote": "Some rows may have already been imported before this failure. Re-importing could create duplicates.",
+          "aiCategorizationQueued": "AI categorization has been queued for the imported transactions"
         },
         "review": {
           "stepTitle": "Review Import",
@@ -105,7 +106,9 @@
           "noInvalidRows": "No invalid rows",
           "noDuplicates": "No duplicates",
           "expand": "Show full data",
-          "collapse": "Hide full data"
+          "collapse": "Hide full data",
+          "categorizeWithAi": "Auto-categorize with AI",
+          "categorizeWithAiHint": "Transactions without a category will be analyzed and assigned one by AI"
         },
         "results": {
           "completeTitle": "Import Complete!",

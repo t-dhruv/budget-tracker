@@ -70,7 +70,8 @@
           "statusCompleted": "Completo",
           "statusFailed": "Fallido",
           "failed": "Importación fallida.",
-          "partialImportNote": "Es posible que algunas filas ya se hayan importado antes de este error. Volver a importar podría crear duplicados."
+          "partialImportNote": "Es posible que algunas filas ya se hayan importado antes de este error. Volver a importar podría crear duplicados.",
+          "aiCategorizationQueued": "AI categorization has been queued for the imported transactions"
         },
         "review": {
           "stepTitle": "Revisar importación",
@@ -105,7 +106,9 @@
           "noInvalidRows": "No hay filas inválidas",
           "noDuplicates": "No hay duplicados",
           "expand": "Mostrar datos completos",
-          "collapse": "Ocultar datos completos"
+          "collapse": "Ocultar datos completos",
+          "categorizeWithAi": "Auto-categorize with AI",
+          "categorizeWithAiHint": "Transactions without a category will be analyzed and assigned one by AI"
         },
         "results": {
           "completeTitle": "¡Importación completada!",

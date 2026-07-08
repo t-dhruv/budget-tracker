@@ -323,6 +323,13 @@ export interface ExecuteImportRequest extends ImportExecuteRequestBase {
    * so the worker anchors dates to the same instants the preview computed.
    */
   timezone?: string;
+  /**
+   * When true, the import worker queues AI categorization for the newly created
+   * transactions after the import completes. Defaults to false so users who
+   * already mapped categories from the CSV column don't get surprised by AI
+   * overwriting them.
+   */
+  categorizeWithAi?: boolean;
 }
 
 /**
