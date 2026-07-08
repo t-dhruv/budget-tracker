@@ -323,18 +323,58 @@
       "financial-expenses": "Фінансові витрати",
       "investments": "Інвестиції",
       "income": "Дохід",
-      "other": "Інше"
+      "other": "Інше",
+      "health": "Здоров'я та медицина",
+      "education": "Освіта",
+      "pets": "Домашні улюбленці",
+      "subscriptions": "Підписки"
     },
     "subcategories": {
       "food": {
         "groceries": "Продукти",
         "restaurant": "Ресторан, фаст-фуд",
-        "bar-cafe": "Бар, кафе"
+        "bar-cafe": "Бар, кафе",
+        "meal-delivery": "Доставка їжі",
+        "takeout": "Їжа на винос"
+      },
+      "health": {
+        "health-insurance-premiums": "Медичне страхування",
+        "doctor-visits": "Візити до лікаря",
+        "hospital-surgery": "Лікарня та хірургія",
+        "prescriptions": "Рецепти",
+        "dental": "Стоматологія",
+        "vision": "Зір",
+        "therapy-counseling": "Терапія та консультування",
+        "health-wellness-other": "Інше здоров'я та wellness"
+      },
+      "education": {
+        "tuition-school": "Плата за навчання",
+        "courses-certifications": "Курси та сертифікації",
+        "books-supplies": "Книги та приладдя",
+        "student-loan-payments": "Виплати студентських кредитів",
+        "childcare-daycare": "Догляд за дітьми",
+        "tutoring-extra-lessons": "Репетиторство та додаткові заняття"
+      },
+      "pets": {
+        "pet-food": "Корм для тварин",
+        "vet-care": "Ветеринарна допомога",
+        "grooming": "Грумінг",
+        "pet-supplies": "Товари для тварин",
+        "boarding-sitting": "Перетримка та догляд",
+        "pet-insurance": "Страхування тварин"
+      },
+      "subscriptions": {
+        "cloud-storage": "Хмарне сховище",
+        "news-magazines": "Новини та журнали",
+        "productivity-saas": "Продуктивність SaaS",
+        "membership-clubs": "Членські клуби",
+        "streaming-video": "Стрімінг (відео)",
+        "streaming-music": "Стрімінг (музика)"
       },
       "shopping": {
         "clothes-shoes": "Одяг та взуття",
         "jewels-accessories": "Прикраси, аксесуари",
-        "health-beauty": "Здоров'я та краса",
+        "personal-care": "Догляд за собою",
         "kids": "Діти",
         "home-garden": "Дім, сад",
         "pets-animals": "Домашні тварини",
@@ -350,13 +390,19 @@
         "energy-utilities": "Енергія, комунальні",
         "services": "Послуги",
         "maintenance-repairs": "Обслуговування, ремонт",
-        "property-insurance": "Страхування нерухомості"
+        "property-insurance": "Страхування нерухомості",
+        "hoa-strata-fees": "Внески ОСББ",
+        "property-tax": "Податок на нерухомість",
+        "furniture-appliances": "Меблі та техніка",
+        "moving-relocation": "Переїзд"
       },
       "transportation": {
         "public-transport": "Громадський транспорт",
         "taxi": "Таксі",
         "long-distance": "Далекі поїздки",
-        "business-trips": "Відрядження"
+        "business-trips": "Відрядження",
+        "tolls": "Дорожні збори",
+        "rideshare": "Райдшейринг (Uber/Lyft)"
       },
       "vehicle": {
         "fuel": "Пальне",
@@ -376,7 +422,7 @@
         "books-audio-subscriptions": "Книги, аудіо, підписки",
         "tv-streaming": "ТБ, стрімінг",
         "holiday-trips-hotels": "Відпустка, подорожі, готелі",
-        "charity-gifts": "Благодійність, подарунки",
+        "charity-donations": "Благодійні пожертви",
         "alcohol-tobacco": "Алкоголь, тютюн",
         "lottery-gambling": "Лотерея, азартні ігри"
       },
@@ -393,14 +439,18 @@
         "fines": "Штрафи",
         "advisory": "Консультації",
         "charges-fees": "Збори, комісії",
-        "child-support": "Аліменти"
+        "child-support": "Аліменти",
+        "banking-fees": "Банківські комісії",
+        "late-payment-fees": "Штрафи за прострочення"
       },
       "investments": {
         "realty": "Нерухомість",
         "vehicles-chattels": "Транспорт, майно",
         "financial-investments": "Фінансові інвестиції",
         "savings": "Заощадження",
-        "collections": "Колекції"
+        "collections": "Колекції",
+        "retirement-401k-ira": "Пенсійні накопичення",
+        "index-funds-etfs": "Індексні фонди та ETF"
       },
       "income": {
         "wage-invoices": "Зарплата, рахунки",
@@ -413,7 +463,12 @@
         "lottery-gambling": "Лотерея, азартні ігри",
         "refunds": "Повернення (податки, покупки)",
         "freelance": "Фріланс",
-        "gifts": "Подарунки"
+        "gifts": "Подарунки",
+        "bonus-commission": "Бонуси та комісії",
+        "tips-gratuity": "Чайові",
+        "side-hustle": "Підробіток",
+        "social-security-pension": "Соціальне забезпечення / пенсія",
+        "government-benefits": "Державні виплати"
       }
     }
   },

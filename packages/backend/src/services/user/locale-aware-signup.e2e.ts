@@ -69,6 +69,10 @@ describe('Locale-aware signup', () => {
       expect(mainCategoryNames).toContain('Housing');
       expect(mainCategoryNames).toContain('Other');
       expect(mainCategoryNames).toContain('Income');
+      expect(mainCategoryNames).toContain('Health & Medical');
+      expect(mainCategoryNames).toContain('Education');
+      expect(mainCategoryNames).toContain('Pets');
+      expect(mainCategoryNames).toContain('Subscriptions');
 
       // Verify subcategories are also in English
       const allCategoryNames = categories.map((c) => c.name);
@@ -92,6 +96,10 @@ describe('Locale-aware signup', () => {
       expect(mainCategoryNames).toContain('Житло');
       expect(mainCategoryNames).toContain('Інше');
       expect(mainCategoryNames).toContain('Дохід');
+      expect(mainCategoryNames).toContain("Здоров'я та медицина");
+      expect(mainCategoryNames).toContain('Освіта');
+      expect(mainCategoryNames).toContain('Домашні улюбленці');
+      expect(mainCategoryNames).toContain('Підписки');
 
       // Verify subcategories are also in Ukrainian
       const allCategoryNames = categories.map((c) => c.name);
@@ -141,6 +149,10 @@ describe('Locale-aware signup', () => {
       'investments',
       'income',
       'other',
+      'health',
+      'education',
+      'pets',
+      'subscriptions',
     ]);
 
     /** Composite (parentKey, key) — subcategory keys aren't globally unique
@@ -149,12 +161,12 @@ describe('Locale-aware signup', () => {
       'food/groceries',
       'food/restaurant',
       'food/bar-cafe',
+      'food/meal-delivery',
+      'food/takeout',
       'shopping/clothes-shoes',
       'shopping/jewels-accessories',
-      'shopping/health-beauty',
+      'shopping/personal-care',
       'shopping/kids',
-      'shopping/home-garden',
-      'shopping/pets-animals',
       'shopping/electronics-accessories',
       'shopping/gifts-joy',
       'shopping/stationery-tools',
@@ -166,10 +178,16 @@ describe('Locale-aware signup', () => {
       'housing/services',
       'housing/maintenance-repairs',
       'housing/property-insurance',
+      'housing/hoa-strata-fees',
+      'housing/property-tax',
+      'housing/furniture-appliances',
+      'housing/moving-relocation',
       'transportation/public-transport',
       'transportation/taxi',
       'transportation/long-distance',
       'transportation/business-trips',
+      'transportation/tolls',
+      'transportation/rideshare',
       'vehicle/fuel',
       'vehicle/parking',
       'vehicle/vehicle-maintenance',
@@ -185,7 +203,7 @@ describe('Locale-aware signup', () => {
       'life/books-audio-subscriptions',
       'life/tv-streaming',
       'life/holiday-trips-hotels',
-      'life/charity-gifts',
+      'life/charity-donations',
       'life/alcohol-tobacco',
       'life/lottery-gambling',
       'communication/phone-cell-phone',
@@ -199,11 +217,15 @@ describe('Locale-aware signup', () => {
       'financial-expenses/advisory',
       'financial-expenses/charges-fees',
       'financial-expenses/child-support',
+      'financial-expenses/banking-fees',
+      'financial-expenses/late-payment-fees',
       'investments/realty',
       'investments/vehicles-chattels',
       'investments/financial-investments',
       'investments/savings',
       'investments/collections',
+      'investments/retirement-401k-ira',
+      'investments/index-funds-etfs',
       'income/wage-invoices',
       'income/interests-dividends',
       'income/sale',
@@ -214,7 +236,38 @@ describe('Locale-aware signup', () => {
       'income/lottery-gambling',
       'income/refunds',
       'income/freelance',
+      'income/bonus-commission',
+      'income/tips-gratuity',
+      'income/side-hustle',
+      'income/social-security-pension',
+      'income/government-benefits',
       'income/gifts',
+      'health/health-insurance-premiums',
+      'health/doctor-visits',
+      'health/hospital-surgery',
+      'health/prescriptions',
+      'health/dental',
+      'health/vision',
+      'health/therapy-counseling',
+      'health/health-wellness-other',
+      'education/tuition-school',
+      'education/courses-certifications',
+      'education/books-supplies',
+      'education/student-loan-payments',
+      'education/childcare-daycare',
+      'education/tutoring-extra-lessons',
+      'pets/pet-food',
+      'pets/vet-care',
+      'pets/grooming',
+      'pets/pet-supplies',
+      'pets/boarding-sitting',
+      'pets/pet-insurance',
+      'subscriptions/cloud-storage',
+      'subscriptions/news-magazines',
+      'subscriptions/productivity-saas',
+      'subscriptions/membership-clubs',
+      'subscriptions/streaming-video',
+      'subscriptions/streaming-music',
     ]);
 
     const KEBAB_CASE_RE = /^[a-z][a-z0-9]*(-[a-z0-9]+)*$/;

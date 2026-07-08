@@ -323,18 +323,58 @@
       "financial-expenses": "Gastos financieros",
       "investments": "Inversiones",
       "income": "Ingresos",
-      "other": "Otros"
+      "other": "Otros",
+      "health": "Salud y medicina",
+      "education": "Educación",
+      "pets": "Mascotas",
+      "subscriptions": "Suscripciones"
     },
     "subcategories": {
       "food": {
         "groceries": "Supermercado",
         "restaurant": "Restaurante, comida rápida",
-        "bar-cafe": "Bar, cafetería"
+        "bar-cafe": "Bar, cafetería",
+        "meal-delivery": "Entrega de comidas",
+        "takeout": "Comida para llevar"
+      },
+      "health": {
+        "health-insurance-premiums": "Primas de seguro médico",
+        "doctor-visits": "Visitas al médico",
+        "hospital-surgery": "Hospital y cirugía",
+        "prescriptions": "Recetas médicas",
+        "dental": "Dental",
+        "vision": "Visión",
+        "therapy-counseling": "Terapia y consejería",
+        "health-wellness-other": "Otra salud y bienestar"
+      },
+      "education": {
+        "tuition-school": "Matrícula y cuotas escolares",
+        "courses-certifications": "Cursos y certificaciones",
+        "books-supplies": "Libros y útiles",
+        "student-loan-payments": "Pagos de préstamos estudiantiles",
+        "childcare-daycare": "Cuidado infantil y guardería",
+        "tutoring-extra-lessons": "Tutorías y clases extra"
+      },
+      "pets": {
+        "pet-food": "Comida para mascotas",
+        "vet-care": "Cuidado veterinario",
+        "grooming": "Peluquería",
+        "pet-supplies": "Suministros para mascotas",
+        "boarding-sitting": "Guardería y cuidado",
+        "pet-insurance": "Seguro para mascotas"
+      },
+      "subscriptions": {
+        "cloud-storage": "Almacenamiento en la nube",
+        "news-magazines": "Noticias y revistas",
+        "productivity-saas": "SaaS de productividad",
+        "membership-clubs": "Clubes de membresía",
+        "streaming-video": "Streaming (video)",
+        "streaming-music": "Streaming (música)"
       },
       "shopping": {
         "clothes-shoes": "Ropa y calzado",
         "jewels-accessories": "Joyas, accesorios",
-        "health-beauty": "Salud y belleza",
+        "personal-care": "Cuidado personal",
         "kids": "Niños",
         "home-garden": "Hogar, jardín",
         "pets-animals": "Mascotas, animales",
@@ -350,13 +390,19 @@
         "energy-utilities": "Energía, suministros",
         "services": "Servicios",
         "maintenance-repairs": "Mantenimiento, reparaciones",
-        "property-insurance": "Seguro del hogar"
+        "property-insurance": "Seguro del hogar",
+        "hoa-strata-fees": "Cuotas de HOA",
+        "property-tax": "Impuesto a la propiedad",
+        "furniture-appliances": "Muebles y electrodomésticos",
+        "moving-relocation": "Mudanza y reubicación"
       },
       "transportation": {
         "public-transport": "Transporte público",
         "taxi": "Taxi",
         "long-distance": "Larga distancia",
-        "business-trips": "Viajes de negocios"
+        "business-trips": "Viajes de negocios",
+        "tolls": "Peajes",
+        "rideshare": "Viajes compartidos (Uber/Lyft)"
       },
       "vehicle": {
         "fuel": "Combustible",
@@ -376,7 +422,7 @@
         "books-audio-subscriptions": "Libros, audio, suscripciones",
         "tv-streaming": "TV, streaming",
         "holiday-trips-hotels": "Vacaciones, viajes, hoteles",
-        "charity-gifts": "Caridad, regalos",
+        "charity-donations": "Donaciones benéficas",
         "alcohol-tobacco": "Alcohol, tabaco",
         "lottery-gambling": "Lotería, juegos de azar"
       },
@@ -393,14 +439,18 @@
         "fines": "Multas",
         "advisory": "Asesoría",
         "charges-fees": "Cargos, comisiones",
-        "child-support": "Manutención"
+        "child-support": "Manutención",
+        "banking-fees": "Comisiones bancarias",
+        "late-payment-fees": "Cargos por pago atrasado"
       },
       "investments": {
         "realty": "Inmuebles",
         "vehicles-chattels": "Vehículos, bienes muebles",
         "financial-investments": "Inversiones financieras",
         "savings": "Ahorros",
-        "collections": "Colecciones"
+        "collections": "Colecciones",
+        "retirement-401k-ira": "Jubilación (401k/IRA)",
+        "index-funds-etfs": "Fondos indexados y ETFs"
       },
       "income": {
         "wage-invoices": "Salario, facturas",
@@ -412,8 +462,18 @@
         "checks-coupons": "Cheques, cupones",
         "lottery-gambling": "Lotería, juegos de azar",
         "refunds": "Reembolsos (fiscal, compra)",
+<<<<<<< HEAD
         "freelance": "Trabajo autónomo",
         "gifts": "Regalos"
+=======
+        "freelance": "Freelance",
+        "gifts": "Regalos",
+        "bonus-commission": "Bonificaciones y comisiones",
+        "tips-gratuity": "Propinas",
+        "side-hustle": "Trabajo adicional",
+        "social-security-pension": "Seguridad Social / pensión",
+        "government-benefits": "Beneficios gubernamentales"
+>>>>>>> ecbbc86f (feat: more catagories added)
       }
     }
   },

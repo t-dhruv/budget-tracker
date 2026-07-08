@@ -323,18 +323,58 @@
       "financial-expenses": "Financial expenses",
       "investments": "Investments",
       "income": "Income",
-      "other": "Other"
+      "other": "Other",
+      "health": "Health & Medical",
+      "education": "Education",
+      "pets": "Pets",
+      "subscriptions": "Subscriptions"
     },
     "subcategories": {
       "food": {
         "groceries": "Groceries",
         "restaurant": "Restaurant, fast-food",
-        "bar-cafe": "Bar, cafe"
+        "bar-cafe": "Bar, cafe",
+        "meal-delivery": "Meal delivery",
+        "takeout": "Takeout"
+      },
+      "health": {
+        "health-insurance-premiums": "Health insurance premiums",
+        "doctor-visits": "Doctor visits",
+        "hospital-surgery": "Hospital & surgery",
+        "prescriptions": "Prescriptions",
+        "dental": "Dental",
+        "vision": "Vision",
+        "therapy-counseling": "Therapy & counseling",
+        "health-wellness-other": "Other health & wellness"
+      },
+      "education": {
+        "tuition-school": "Tuition & school fees",
+        "courses-certifications": "Courses & certifications",
+        "books-supplies": "Books & supplies",
+        "student-loan-payments": "Student loan payments",
+        "childcare-daycare": "Childcare & daycare",
+        "tutoring-extra-lessons": "Tutoring & extra lessons"
+      },
+      "pets": {
+        "pet-food": "Pet food",
+        "vet-care": "Vet care",
+        "grooming": "Grooming",
+        "pet-supplies": "Pet supplies",
+        "boarding-sitting": "Boarding & sitting",
+        "pet-insurance": "Pet insurance"
+      },
+      "subscriptions": {
+        "cloud-storage": "Cloud storage",
+        "news-magazines": "News & magazines",
+        "productivity-saas": "Productivity SaaS",
+        "membership-clubs": "Membership clubs",
+        "streaming-video": "Streaming (video)",
+        "streaming-music": "Streaming (music)"
       },
       "shopping": {
         "clothes-shoes": "Clothes & shoes",
         "jewels-accessories": "Jewels, accessories",
-        "health-beauty": "Health and beauty",
+        "personal-care": "Personal care",
         "kids": "Kids",
         "home-garden": "Home, garden",
         "pets-animals": "Pets, animals",
@@ -350,13 +390,19 @@
         "energy-utilities": "Energy, utilities",
         "services": "Services",
         "maintenance-repairs": "Maintenance, repairs",
-        "property-insurance": "Property insurance"
+        "property-insurance": "Property insurance",
+        "hoa-strata-fees": "HOA / strata fees",
+        "property-tax": "Property tax",
+        "furniture-appliances": "Furniture & appliances",
+        "moving-relocation": "Moving & relocation"
       },
       "transportation": {
         "public-transport": "Public transport",
         "taxi": "Taxi",
         "long-distance": "Long distance",
-        "business-trips": "Business trips"
+        "business-trips": "Business trips",
+        "tolls": "Tolls",
+        "rideshare": "Rideshare (Uber/Lyft)"
       },
       "vehicle": {
         "fuel": "Fuel",
@@ -376,7 +422,7 @@
         "books-audio-subscriptions": "Books, audio, subscriptions",
         "tv-streaming": "TV, Streaming",
         "holiday-trips-hotels": "Holiday, trips, hotels",
-        "charity-gifts": "Charity, gifts",
+        "charity-donations": "Charity & donations",
         "alcohol-tobacco": "Alcohol, tobacco",
         "lottery-gambling": "Lottery, gambling"
       },
@@ -393,14 +439,18 @@
         "fines": "Fines",
         "advisory": "Advisory",
         "charges-fees": "Charges, Fees",
-        "child-support": "Child Support"
+        "child-support": "Child Support",
+        "banking-fees": "Banking fees",
+        "late-payment-fees": "Late payment fees"
       },
       "investments": {
         "realty": "Realty",
         "vehicles-chattels": "Vehicles, chattels",
         "financial-investments": "Financial investments",
         "savings": "Savings",
-        "collections": "Collections"
+        "collections": "Collections",
+        "retirement-401k-ira": "Retirement (401k/IRA)",
+        "index-funds-etfs": "Index funds & ETFs"
       },
       "income": {
         "wage-invoices": "Wage, invoices",
@@ -413,7 +463,12 @@
         "lottery-gambling": "Lottery, gambling",
         "refunds": "Refunds (tax, purchase)",
         "freelance": "Freelance",
-        "gifts": "Gifts"
+        "gifts": "Gifts",
+        "bonus-commission": "Bonus & commission",
+        "tips-gratuity": "Tips & gratuity",
+        "side-hustle": "Side hustle",
+        "social-security-pension": "Social Security / pension",
+        "government-benefits": "Government benefits"
       }
     }
   },
